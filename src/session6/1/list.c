@@ -6,7 +6,6 @@
 #include <stdint.h>
 #include <corecrt_malloc.h>
 
-
 typedef struct node {
 	void* item;
 	struct node* next;

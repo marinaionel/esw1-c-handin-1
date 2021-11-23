@@ -4,28 +4,38 @@
 
 #include "gtest/gtest.h"
 
-class TestLinkedList : public ::testing::Test {
-protected:
-    void SetUp() override {
+extern "C" {
+#include "../../session6/1/list.h"
+}
 
+class TestLinkedList : public testing::Test {
+protected:
+    list_t list;
+
+    void SetUp() override {
+        list = list_create();
     }
 
     void TearDown() override {
-
+        list_destroy(list);
     }
 };
 
-TEST_F(TestLinkedList, Test1
+TEST_F(TestLinkedList, Test_list_is_created
 ) {
-EXPECT_EQ(1, 1);
-EXPECT_TRUE(true);
+    EXPECT_TRUE(list != nullptr);
 }
 
-TEST_F(TestLinkedList, Test_hal_create_is_called
+TEST_F(TestLinkedList, Test_list_add_item
 ) {
-production_create();
-
-ASSERT_EQ(1u, hal_create_fake.call_count);
-EXPECT_TRUE(10u, hal_create_fake.arg0_val);
+    int value = 10;
+    list_addItem(list, &value);
+    EXPECT_EQ(list_noOfItems(list), 1);
 }
 
+TEST_F(TestLinkedList, Test_list_get_item) {
+    void *out = NULL;
+    list_getItem(list, &out, 0);
+    int *res = (int *) out;
+    EXPECT_EQ(10, *res);
+}
