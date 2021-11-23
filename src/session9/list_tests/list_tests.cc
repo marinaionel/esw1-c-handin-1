@@ -34,8 +34,10 @@ TEST_F(TestLinkedList, Test_list_add_item
 }
 
 TEST_F(TestLinkedList, Test_list_get_item) {
+    int value = 10;
+    list_addItem(list, &value);
     void *out = NULL;
     list_getItem(list, &out, 0);
     int *res = (int *) out;
-    EXPECT_EQ(10, *res);
+    EXPECT_EQ(value, *res);
 }

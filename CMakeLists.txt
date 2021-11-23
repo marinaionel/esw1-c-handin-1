@@ -17,6 +17,8 @@ enable_testing()
 add_executable(
         list_tests
         src/session9/list_tests/list_tests.cc
+        src/session6/1/list.h
+        src/session6/1/list.c
 )
 target_link_libraries(
         list_tests
