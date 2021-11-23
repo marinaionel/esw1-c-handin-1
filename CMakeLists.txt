@@ -1,16 +1,30 @@
 cmake_minimum_required(VERSION 3.16)
-project(handin C)
+project(handin LANGUAGES C CXX)
 
 set(CMAKE_C_STANDARD 11)
 
 include(FetchContent)
 FetchContent_Declare(
-  googletest
-  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+        googletest
+        URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+add_executable(
+        list_tests
+        src/session9/list_tests/list_tests.cc
+)
+target_link_libraries(
+        list_tests
+        gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(list_tests)
 
 add_executable(handin src/session1/ex2.c)
 add_executable(ex1 src/session1/ex1.c)
