@@ -41,3 +41,11 @@ TEST_F(TestLinkedList, Test_list_get_item) {
     int *res = (int *) out;
     EXPECT_EQ(value, *res);
 }
+
+TEST_F(TestLinkedList, Test_remove_item) {
+    int value = 10;
+    list_addItem(list, &value);
+    EXPECT_EQ(1, list_noOfItems(list));
+    EXPECT_EQ(LIST_OK, list_removeItem(list, &value));
+    EXPECT_EQ(0, list_noOfItems(list));
+}
