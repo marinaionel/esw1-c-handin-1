@@ -28,3 +28,5 @@ cmake-build-debug/
 *.ko
 *.obj
 *.elf
+*.i
+*.asm
